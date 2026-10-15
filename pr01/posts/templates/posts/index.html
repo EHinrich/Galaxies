@@ -1,0 +1,124 @@
+<!DOCTYPE HTML
+    <html>
+    <head>
+        <meta charset="cp1251">
+        <title>Universe</title>
+    </head>
+<body>
+
+<div style='display: flex;'>
+<form style = 'padding: 15px;', method ="post"> 
+    {% csrf_token %}
+    <input type="hidden" id="postId" name="postId" value="1" />
+    {{form_object.object_name}} <br><br>
+    {{form_object.mass}} <br><br>
+    {{form_object.radius}} <br><br>
+    {{form_object.system_name}}<br><br>
+    {{form_object.galaxy_name}}<br><br>
+    <input type = "submit" value="Send">
+</form>
+
+<form style = 'padding: 15px;', method ="post"> 
+    {% csrf_token %}
+    <input type="hidden" id="postId" name="postId" value="4" />
+    id <input type = "text" name = "id"><br><br>
+    <input type = "submit" value="Delete">
+</form>
+
+<br></br><br></br>
+
+<form style = 'padding: 15px;', method ="post">
+    {% csrf_token %}
+    <input type="hidden" id="postId" name="postId" value="2" />
+    {{form_system.system_name}} <br><br>
+    {{form_system.radius}} <br><br>
+    {{form_system.age}} <br><br>
+    <input type = "submit" value="Send">
+</form>
+
+<form style = 'padding: 15px;', method ="post">
+    {% csrf_token %}
+    <input type="hidden" id="postId" name="postId" value="5" />
+    System name <input type = "text" name = "system_name"><br><br>
+    <input type = "submit" value="Delete">
+</form>
+<br></br><br></br>
+
+<form style = 'padding: 15px;', method ="post">
+    {% csrf_token %}
+    <input type="hidden" id="postId" name="postId" value="3" />
+    {{form_galaxy.galaxy_name}} <br><br>
+    {{form_galaxy.radius}} <br><br>
+    {{form_galaxy.age}} <br><br>
+    <input type = "submit" value="Send">
+</form>
+
+<form style = 'padding: 15px;', method ="post">
+    {% csrf_token %}
+    <input type="hidden" id="postId" name="postId" value="6" />
+   Galaxy name <input type = "text" name = "galaxy_name"><br><br>
+    <input type = "submit" value="Delete">
+</form>
+</div>
+<br></br><br></br>
+
+
+<div style='display: flex;'>
+    <table style = 'padding: 30px;', border='1'>
+        <caption>Table Objects</caption>
+        <tr>
+            <th>id</th>
+            <th>Object name</th>
+            <th>Mass</th>
+            <th>Radius</th>
+            <th>Systen name</th>
+            <th>Galaxy name</th>
+        </tr>
+        {% for el in objects %}
+    <tr>
+        <td>{{el.id}}</td>
+        <td>{{el.object_name}}</td>
+        <td>{{el.mass}}</td>
+        <td>{{el.radius}}</td>
+        <td>{{el.system_name}}</td>
+        <td>{{el.galaxy_name}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+        <table style = 'padding: 30px;', border='1'>
+            <caption>Table Systems</caption>
+            <tr>
+                <th>System name</th>
+                <th>radius</th>
+                <th>Age</th>
+            </tr>
+        {% for el in systems %}
+           <tr>
+            <td>{{el.system_name}}</td>
+            <td>{{el.radius}}</td>
+            <td>{{el.age}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <table style = 'padding: 30px;', border='1'>
+            <caption>Table Galaxies</caption>
+            <tr>
+                <th>Galaxy name</th>
+                <th>radius</th>
+                <th>Age</th>
+            </tr>
+           <tr>
+            {% for el in galaxies %}
+            <td>{{el.galaxy_name}}</td>
+            <td>{{el.radius}}</td>
+            <td>{{el.age}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+</div>
+
+</body>
